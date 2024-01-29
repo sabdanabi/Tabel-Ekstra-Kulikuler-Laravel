@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\EkstraController;
+use App\Http\Controllers\KelasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,8 +52,17 @@ Route::group(["prefix" => "/student"],function(){
     Route::get('/all', [StudentsController:: class,'index']);
     Route::get('/detail/{student}',[StudentsController::class,'show']);
     Route::get('/create', [StudentsController::class,'create']);
-    Route::post('/add', [StudentsController::class,'store']);
+    Route::post('/add', [StudentsController::class,'store']);                                  //seperti nama aslias/nama lain         
     Route::delete('/delete/{id}', [\App\Http\Controllers\StudentsController::class, 'destroy'])->name('student.delete');
     Route::get('/edit/{id}', [StudentsController::class, 'edit']);
     Route::post('/update/{id}', [StudentsController::class, 'update']);
+});
+
+Route::group(["prefix" => "/kelas"],function(){
+    Route::get('/all', [KelasController:: class,'index']);
+    Route::get('/create', [KelasController::class,'create']);
+    Route::post('/add', [KelasController::class,'store']);
+    Route::delete('/delete/{id}', [\App\Http\Controllers\KelasController::class, 'destroy'])->name('student.delete');
+    Route::get('/edit/{id}', [KelasController::class, 'edit']);
+    Route::post('/update/{id}', [KelasController::class, 'update']);     
 });
