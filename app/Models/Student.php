@@ -11,8 +11,8 @@ class Student extends Model
 
     protected $guarded = ['id'];
     protected $fillable = ['nis', 'nama', 'kelas_id', 'tanggal_lahir', 'alamat'];
-    public function kelas(){
-        return $this->belongsTo(Kelas::class);
-    }
+        public function kelas(){
+            return $this->belongsTo(Kelas::class);
+        }
 
 }

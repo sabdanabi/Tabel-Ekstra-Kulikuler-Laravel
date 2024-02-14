@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\EkstraController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -65,4 +68,16 @@ Route::group(["prefix" => "/kelas"],function(){
     Route::delete('/delete/{id}', [\App\Http\Controllers\KelasController::class, 'destroy'])->name('student.delete');
     Route::get('/edit/{id}', [KelasController::class, 'edit']);
     Route::post('/update/{id}', [KelasController::class, 'update']);     
+});
+
+Route::group(["prefix" => "/login"],function(){  
+    Route::get('/index', [LoginController:: class,'show'])->middleware('guest')->name('login');
+    Route::get('/register', [RegisterController:: class,'show']) ->middleware('guest');
+    Route::post('/register/add', [RegisterController:: class,'store']);
+    Route::post('/index/in',[\App\Http\Controllers\LoginController::class,'authenticate']);
+    Route::post('/index/out',[\App\Http\Controllers\LoginController::class,'logout']);
+});
+
+Route::group(["prefix" => "/dashboard"],function(){  
+    Route::get('/index', [DashboardController:: class,'show'])->middleware('auth');
 });

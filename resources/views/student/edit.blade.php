@@ -14,7 +14,13 @@
   </div>
   <div class="mb-3">
     <label  class="form-label">Kelas Siswa</label>
-    <input  class="form-control"  id="kelas" name="kelas" value="{{old('kelas',$student->kelas)}}">
+    <select class="form-select" name="kelas_id" id="kelas">
+            @foreach($kelas as $item)
+                <option name="kelas" value="{{$item -> id}}" {{$student -> kelas_id == $item -> id ? 'selected' : ""}}>
+                  {{ $item->nama }}</option>
+            @endforeach
+    </select>
+    <!-- <input  class="form-control"  id="kelas" name="kelas" value="{{old('kelas',$student->kelas)}}"> -->
   </div>
   <div class="mb-3">
     <label class="form-label">Alamat Siswa</label>

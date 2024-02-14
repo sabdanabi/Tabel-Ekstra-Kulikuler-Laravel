@@ -4,12 +4,12 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 text-center">
-                <h1>{{ $title }}</h1>
+            <h1 class="text-2xl font-semibold mb-5 mt-5">{{ $title }}</h1>
 
-                <table class="table table-striped-columns">
+                <table class="table table-striped-columns mb-10">
                     <thead class="table-dark">
                         <th>No</th>
-                        <th>Nama</th>
+                        <th>Major</th>
                         <th>Actions</th>
                     </thead>
                     <tbody>

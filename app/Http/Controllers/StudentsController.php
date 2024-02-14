@@ -11,7 +11,7 @@ class StudentsController extends Controller
     public static function index(){
 
         return view('student/all',[
-            "title" => "Ini adalah daftar students kelas 11 PPLG 1",
+            "title" => "New student data for SMK Raden Umar Said 2025",
             "students" => Student::all()
         ]);
     }   
@@ -70,7 +70,8 @@ class StudentsController extends Controller
         return view('student.edit',
         [
             'title' =>'edit student',
-            "student" => Student::findOrFail($id)
+            "student" => Student::findOrFail($id),
+            'kelas' => Kelas::all()
         ]
         );
     }
