@@ -35,7 +35,7 @@
                     </div>
 
                     <button type="submit"
-                        class="text-sm bg-[#93cddd] w-56 h-8 font-semibold text-white rounded mt-8">Register</button>
+                        class="text-sm hover:bg-[#93cddd] bg-[#42a7c3] w-56 h-8 font-semibold text-white rounded mt-8">Register</button>
                 </form>
 
                 <p class="text-[10px] mt-4">Forgot your password? <a href="#" class="text-sky-500">Click here</a></p>

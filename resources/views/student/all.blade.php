@@ -21,10 +21,6 @@
             <div class="flex mb-3">
                 <p>All</p>
                 <p class="mr-8">(11)</p>
-                <div class="mr-96 bg-blue-700 w-36 h-8 rounded-full flex">
-                    <a href="/student/create" class="text-white m-auto">Add new Data <i
-                            class="fa-solid fa-plus"></i></a>
-                </div>
             </div>
 
             <table class="table table-striped-columns">
@@ -58,46 +54,16 @@
                                     <ul>
                                         <li><a href="/student/detail/{{ $student->id }}" class="btn btn-info"><i
                                                     class="fa-solid fa-circle-info"></i> Info</a></li>
-                                        <li class="py-1"><a href="/student/edit/{{ $student->id }}" class="btn btn-warning"><i
-                                                    class="fa-solid fa-pen-to-square"></i> Edit</a></li>
-                                        <li>
-                                            <button type="button" class="bg-red-700 w-[70px] h-9 rounded"
-                                                data-bs-toggle="modal" data-bs-target="#delete{{ $student->id }}">
-                                                <i class="fa-solid fa-delete-left"></i>Delete
-                                            </button>
-                                        </li>
                                     </ul>
                                 </div>
                         </td>
                     </tr>
-
-                    <div class="modal fade" id="delete{{ $student->id }}" tabindex="-1"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Yakin ingin menghapus {{ $student->nama }}
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <form action="{{ url('/student/delete/' . $student->id) }}" method="POST">
-                                        @method('delete')
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     @endforeach
                 </tbody>
             </table>
+            <div class="pagination">
+                {{ $students->links() }}
+            </div>
         </div>
     </div>
 </div>

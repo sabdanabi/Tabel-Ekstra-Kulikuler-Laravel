@@ -10,7 +10,7 @@ class KelasController extends Controller
     public static function index(){
 
         return view('kelas/all',[
-            "title" => "Ini adalah daftar  kelas 11 PPLG 1",
+            "title" => "Ini adalah daftar jurusan di SMK Raden Umar Said",
             "kelas" => Kelas::all()
         ]);
     }

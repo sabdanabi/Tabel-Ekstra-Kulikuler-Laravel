@@ -2,27 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Kelas;
 
-use Illuminate\Http\Request;
-
-class StudentsController extends Controller
+class DashboardSiswaController extends Controller
 {
     public static function index()
     {
         $perPage = 5;
         $students = Student::paginate($perPage);
-        return view('student/all', [
+        $studentTotal = Student::count();
+
+        return view('dashboard/students/all', [
             "title" => "New student data for SMK Raden Umar Said 2025",
-            "students" => $students
+            "students" => $students,
+            "studentTotal"=> $studentTotal
         ]);
     }
 
     public function show($id)
     {
         return view(
-            'student.detail',
+            'dashboard/students/detail',
             [
                 'title' => 'detail-student',
                 "student" => Student::findOrFail($id)
@@ -32,11 +34,13 @@ class StudentsController extends Controller
 
     public function create()
     {
-        return view('student.create', [
+        return view('dashboard/students/create', [
             'title' => 'Add Data',
             'kelas' => Kelas::all()
         ]);
     }
+
+
 
     public function store(Request $request)
     {
@@ -53,28 +57,14 @@ class StudentsController extends Controller
         $result = Student::create($validateData);
 
         if ($result) {
-            return redirect('/student/all')->with('success', 'Data siswa berhasil ditambahkan');
+            return redirect('/dashboard/students/all')->with('success', 'Data siswa berhasil ditambahkan');
         }
     }
-
-    public function destroy($id)
-    {
-        //mencari id berdasarkan id yang sudah ditrima oleh parameter
-        $student = Student::find($id);
-
-        if (!$student) {
-            return redirect('student/all')->with('error', 'Data siswa tidak ditemukan.');
-        }
-        $student->delete();
-        return redirect('student/all')->with('worked', 'Data berhasil dihapus.');
-    }
-
-    // app/Http/Controllers/StudentsController.php
 
     public function edit($id)
     {
         return view(
-            'student.edit',
+            'dashboard/students/edit',
             [
                 'title' => 'edit student',
                 "student" => Student::findOrFail($id),
@@ -98,7 +88,37 @@ class StudentsController extends Controller
         $student = Student::findOrFail($id);
         //digunakan untuk memperbarui record dalam database
         $student->update($validateData);
-        return redirect('student/all')->with('success', 'Data Anda berhasil diupdate');
+        return redirect('/dashboard/students/all')->with('success', 'Data Anda berhasil diupdate');
+    }
+
+    public function destroy($id)
+    {
+        //mencari id berdasarkan id yang sudah ditrima oleh parameter
+        $student = Student::find($id);
+
+        if (!$student) {
+            return redirect('/dashboard/students/all')->with('error', 'Data siswa tidak ditemukan.');
+        }
+        $student->delete();
+        return redirect('/dashboard/students/all')->with('worked', 'Data berhasil dihapus.');
+    }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $students = Student::where('nama', 'LIKE', "%$keyword%")
+            ->orWhere('nis', 'LIKE', "%$keyword%")
+            ->orWhereHas('kelas', function ($query) use ($keyword) {
+                $query->where('nama', 'LIKE', "%$keyword%");
+            })
+            ->paginate(5);
+
+        return view('dashboard/students/all', [
+            'title' => 'Search Results',
+            'students' => $students
+        ]);
     }
 
 }
+

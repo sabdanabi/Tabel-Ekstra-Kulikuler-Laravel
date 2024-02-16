@@ -14,6 +14,7 @@ class LoginController extends Controller
         ]);
     } 
 
+    // Metode untuk mengotentikasi pengguna saat login
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([

@@ -5,6 +5,19 @@
 <body class="bg-[#93cddd]">
     <img src="/img/line.png" alt="" class="">
     <div class="w-[50%] bg-white h-[550px] absolute left-96 top-32 rounded-lg">
+        <!-- <div class="absolute z-10 left-38">
+            @if (session()->has('success'))
+            <div class="alert alert-success col-lg-13" role="alert">
+                {{ session('success') }}
+            </div>
+            @endif
+
+            @if (session()->has('error'))
+            <div class="alert alert-danger col-lg-13" role="alert">
+                {{ session('error') }}
+            </div>
+            @endif
+        </div> -->
         <div>
             <img src="/img/smk.png" alt="" class="w-10 ml-8 mt-7 absolute">
         </div>
@@ -17,7 +30,7 @@
                 </div>
 
                 <form action="/login/index/in" method="POST" class="mt-4">
-                @csrf
+                    @csrf
                     <div class="w-56">
                         <input type="email" id="email" name="email"
                             class="form-control rounded-sm h-9 text-xs font-semibold placeholder-[#b3b3b3] border-[#b3b3b3]"
@@ -29,7 +42,8 @@
                             placeholder="Password" />
                     </div>
 
-                    <button class="text-sm bg-[#93cddd] w-56 h-8 font-semibold text-white rounded mt-8">Login</button>
+                    <button
+                        class="text-sm hover:bg-[#93cddd] bg-[#42a7c3] w-56 h-8 font-semibold text-white rounded mt-8">Login</button>
                 </form>
 
                 <p class="text-[10px] mt-4">Forgot your password? <a href="#" class="text-sky-500">Click here</a></p>
@@ -59,7 +73,8 @@
 
                 <div class="w-80 h-[430px]  mx-auto mt-11 border border-white rounded-lg relative">
                     <div class="h-full w-full rounded-lg bg-white opacity-30 backdrop-blur-sm "></div>
-                    <p class="text-white absolute top-7 left-6 font-semibold text-lg">New Student <br>Admission 2024/2025</p>
+                    <p class="text-white absolute top-7 left-6 font-semibold text-lg">New Student <br>Admission
+                        2024/2025</p>
                     <img src="/img/zidni.png" alt="" class="absolute top-[13px] w-[277px] left-16">
                 </div>
 

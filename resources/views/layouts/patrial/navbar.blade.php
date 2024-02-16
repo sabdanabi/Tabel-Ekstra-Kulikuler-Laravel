@@ -28,26 +28,27 @@
         </ul>
       </nav>
       @auth
-                <div class="dropdown">
-                    <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Welcome, {{ auth()->user()->name }}
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li>
-                            <form method="post" action="/login/index/out">
-                                @csrf
-                                <button type="submit" class="dropdown-item">Logout</button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            @else<form class="d-flex gap-2" role="search">
-                <a class="btn btn-success fw-semibold" href="/login/register">Register</a>
-                <a class="btn btn-success fw-semibold" href="/login/index">Login</a>
+      <div class="dropdown">
+        <button class="bg-blue-700 text-white rounded-xl w-44 h-10 hover:bg-blue-800"
+          type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Welcome, {{ auth()->user()->name }} <i class="fa-solid fa-chevron-down"></i>
+        </button>
+
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="/dashboard/index">Dashboard</a></li>
+          <li>
+            <form method="post" action="/login/index/out">
+              @csrf
+              <button type="submit" class="dropdown-item">Logout</button>
             </form>
-            @endauth
+          </li>
+        </ul>
+      </div>
+      @else<form class="d-flex gap-2" role="search">
+        <a class="btn btn-success fw-semibold" href="/login/register">Register</a>
+        <a class="btn btn-success fw-semibold" href="/login/index">Login</a>
+      </form>
+      @endauth
       <!-- <div class="d-flex mr-5">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
